@@ -1,6 +1,6 @@
 {
-"homepage": "http://soletscode.github.io/movie-challenge",
-  "name": "movie-challenege",
+
+  "name": "movie-challenge",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
