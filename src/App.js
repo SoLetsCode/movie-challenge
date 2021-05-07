@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Button, Container, TextField } from "@material-ui/core";
 
-function App() {
+export default function App() {
+  const searchClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.title.value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Container>
+        <form
+          noValidate
+          autoComplete="off"
+          id="searchForm"
+          onSubmit={searchClick}
         >
-          Learn React
-        </a>
-      </header>
+          <TextField label="Search" name="title" variant="outlined" />
+        </form>
+        <Button
+          type="submit"
+          variant="contained"
+          form="searchForm"
+          color="primary"
+        >
+          Search
+        </Button>
+      </Container>
     </div>
   );
 }
-
-export default App;
