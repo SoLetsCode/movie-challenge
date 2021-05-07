@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v1
       - run: npm install
       - run: npm run build 
+        env:
+          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
       - name: Deploy 
         uses: crazy-max/ghaction-github-pages@v2
         with:
@@ -20,3 +22,4 @@ jobs:
           build_dir: build
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+
