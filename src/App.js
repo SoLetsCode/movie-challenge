@@ -3,13 +3,11 @@ import axios from "axios";
 
 import { Button, Container, TextField } from "@material-ui/core";
 
-console.log(process.env.REACT_APP_API_KEY);
-console.log(process.env.NODE_ENV);
 export default function App() {
   const API_KEY =
     process.env.NODE_ENV === "development"
       ? process.env.REACT_APP_API_KEY
-      : process.env.REACT_APP_API_KEY;
+      : process.env.REACT_APP_GH_API_KEY;
   const URL = "https://www.omdbapi.com";
   const PARAMS = `?apikey=${API_KEY}&type=movie&s=`;
 
