@@ -10,7 +10,7 @@ export default function App() {
     process.env.NODE_ENV === "development"
       ? process.env.REACT_APP_API_KEY
       : process.env.REACT_APP_API_KEY;
-  const URL = "http://www.omdbapi.com";
+  const URL = "https://www.omdbapi.com";
   const PARAMS = `?apikey=${API_KEY}&type=movie&s=`;
 
   const searchClick = (e) => {
