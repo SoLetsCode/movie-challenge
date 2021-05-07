@@ -11,12 +11,24 @@ export default function App() {
   const URL = "https://www.omdbapi.com";
   const PARAMS = `?apikey=${API_KEY}&type=movie&s=`;
 
-  const searchClick = (e) => {
+  const searchSubmit = (e) => {
     e.preventDefault();
     const search = e.target.title.value;
-    axios.get(`${URL}${PARAMS}${search}`).then((res) => {
-      console.log(res);
-    });
+    axios
+      .get(`${URL}${PARAMS}${search}`)
+      .then((res) => {
+        if (res.data.Response === "False") {
+          //no movie found
+          console.log("MOVIE NOT FOUND");
+        }
+
+        if (res.data?.Search) {
+          console.log(res.data.Search);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -25,7 +37,7 @@ export default function App() {
           noValidate
           autoComplete="off"
           id="searchForm"
-          onSubmit={searchClick}
+          onSubmit={searchSubmit}
         >
           <TextField label="Search" name="title" variant="outlined" />
         </form>
