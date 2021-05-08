@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import { Button, Container, TextField } from "@material-ui/core";
+import { Button, Container, TextField, Grid } from "@material-ui/core";
 
 function SearchBar({ setMovies, setSearch }) {
   const API_KEY =
@@ -44,16 +44,22 @@ function SearchBar({ setMovies, setSearch }) {
         id="searchForm"
         onSubmit={searchSubmit}
       >
-        <TextField label="Search" name="title" variant="outlined" />
+        <Grid container xs={12} justify="center">
+          <Grid container item xs={3}>
+            <TextField label="Search" name="title" variant="outlined" />
+          </Grid>
+          <Grid container item xs={3}>
+            <Button
+              type="submit"
+              variant="contained"
+              form="searchForm"
+              color="primary"
+            >
+              Search
+            </Button>
+          </Grid>
+        </Grid>
       </form>
-      <Button
-        type="submit"
-        variant="contained"
-        form="searchForm"
-        color="primary"
-      >
-        Search
-      </Button>
     </Container>
   );
 }
