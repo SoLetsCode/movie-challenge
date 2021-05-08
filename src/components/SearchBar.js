@@ -44,7 +44,7 @@ function SearchBar({ setMovies, setSearch }) {
         id="searchForm"
         onSubmit={searchSubmit}
       >
-        <Grid container xs={12} justify="center">
+        <Grid container justify="center">
           <Grid container item xs={3}>
             <TextField label="Search" name="title" variant="outlined" />
           </Grid>

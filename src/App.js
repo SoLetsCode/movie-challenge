@@ -20,9 +20,15 @@ export default function App() {
     }
   };
 
+  const nominatedCheck = (imdbID) => {
+    let result = nominated.some((movie) => movie.imdbID === imdbID);
+    debugger;
+    return result;
+  };
+
   return (
     <div>
-      <Grid container xs={12} item justify="center">
+      <Grid container justify="center">
         <SearchBar setMovies={setMovies} setSearch={setSearch} />
       </Grid>
       <Grid container xs={12} item justify="center">
@@ -36,6 +42,8 @@ export default function App() {
                 src={movie.Poster}
                 imdbID={movie.imdbID}
                 nominateClick={nominateClick}
+                nominated={nominatedCheck(movie.imdbID)}
+                key={movie.imdbID + "search"}
               />
             ))}
           </Container>
@@ -48,6 +56,7 @@ export default function App() {
                 title={movie.Title}
                 year={movie.Year}
                 src={movie.Poster}
+                key={movie.imdbID + "nominated"}
               />
             ))}
           </Container>

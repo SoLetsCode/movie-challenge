@@ -20,7 +20,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieCard({ src, title, year, imdbID, nominateClick }) {
+export default function MovieCard({
+  src,
+  title,
+  year,
+  imdbID,
+  nominateClick,
+  nominated,
+}) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -40,6 +47,7 @@ export default function MovieCard({ src, title, year, imdbID, nominateClick }) {
           size="small"
           color="primary"
           onClick={() => nominateClick(imdbID)}
+          disabled={nominated}
         >
           Nominate
         </Button>
