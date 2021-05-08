@@ -23,10 +23,10 @@ export default function App() {
 
     if (nominated.length < 5) {
       let movie = movies.find((item) => item.imdbID === imdbID);
-      setNominated([...nominated, movie]);
       toastToggle();
       setToastType("success");
-      setToastText("Movie added");
+      setToastText(`Movie "${movie.Title}" added`);
+      setNominated([...nominated, movie]);
     }
   };
 
@@ -37,12 +37,14 @@ export default function App() {
 
   const removeClick = (imdbID) => {
     let index = nominated.findIndex((item) => item.imdbID === imdbID);
+    let movieName = nominated[index].Title;
+
     let newArray = [...nominated];
     newArray.splice(index, 1);
     setNominated(newArray);
     toastToggle();
     setToastType("error");
-    setToastText("Movie removed");
+    setToastText(`Movie "${movieName}" removed`);
   };
 
   const dialogToggle = () => {
