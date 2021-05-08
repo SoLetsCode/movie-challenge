@@ -25,7 +25,8 @@ export default function MovieCard({
   title,
   year,
   imdbID,
-  nominateClick,
+  buttonClick,
+  buttonTitle,
   nominated,
 }) {
   const classes = useStyles();
@@ -46,10 +47,10 @@ export default function MovieCard({
         <Button
           size="small"
           color="primary"
-          onClick={() => nominateClick(imdbID)}
+          onClick={() => buttonClick(imdbID)}
           disabled={nominated}
         >
-          Nominate
+          {buttonTitle}
         </Button>
       </CardActions>
     </Card>

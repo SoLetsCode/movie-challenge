@@ -22,8 +22,17 @@ export default function App() {
 
   const nominatedCheck = (imdbID) => {
     let result = nominated.some((movie) => movie.imdbID === imdbID);
-    debugger;
     return result;
+  };
+
+  const removeClick = (imdbID) => {
+    //find index of movie
+    //remove movie from array
+    debugger;
+    let index = nominated.findIndex((item) => item.imdbID === imdbID);
+    let newArray = [...nominated];
+    newArray.splice(index, 1);
+    setNominated(newArray);
   };
 
   return (
@@ -41,7 +50,8 @@ export default function App() {
                 year={movie.Year}
                 src={movie.Poster}
                 imdbID={movie.imdbID}
-                nominateClick={nominateClick}
+                buttonClick={nominateClick}
+                buttonTitle={"Nominate"}
                 nominated={nominatedCheck(movie.imdbID)}
                 key={movie.imdbID + "search"}
               />
@@ -56,6 +66,9 @@ export default function App() {
                 title={movie.Title}
                 year={movie.Year}
                 src={movie.Poster}
+                imdbID={movie.imdbID}
+                buttonClick={removeClick}
+                buttonTitle={"Remove"}
                 key={movie.imdbID + "nominated"}
               />
             ))}
