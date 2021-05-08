@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import { Container, Grid } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
 import SearchBar from "./components/SearchBar";
+import Dialog from "./components/Dialog";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [nominated, setNominated] = useState([]);
   const [search, setSearch] = useState("Please search for movies");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const nominateClick = (imdbID) => {
-    if (nominated.length === 5) {
+    if (nominated.length >= 4) {
       //tell user that they have reached the max
+      dialogToggle();
     }
 
     if (nominated.length < 5) {
@@ -33,6 +36,10 @@ export default function App() {
     let newArray = [...nominated];
     newArray.splice(index, 1);
     setNominated(newArray);
+  };
+
+  const dialogToggle = () => {
+    setDialogOpen(!dialogOpen);
   };
 
   return (
@@ -75,6 +82,12 @@ export default function App() {
           </Container>
         </Grid>
       </Grid>
+      <Dialog
+        open={dialogOpen}
+        toggle={dialogToggle}
+        title="Thank you for nominating"
+        text="You reached the max of 5 movie nominations. To add another movie you will need to remove one"
+      />
     </div>
   );
 }
