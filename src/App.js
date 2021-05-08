@@ -4,12 +4,16 @@ import { Container, Grid } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
 import SearchBar from "./components/SearchBar";
 import Dialog from "./components/Dialog";
+import Toast from "./components/Toast";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [nominated, setNominated] = useState([]);
   const [search, setSearch] = useState("Please search for movies");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const [toastType, setToastType] = useState("");
 
   const nominateClick = (imdbID) => {
     if (nominated.length >= 4) {
@@ -20,6 +24,9 @@ export default function App() {
     if (nominated.length < 5) {
       let movie = movies.find((item) => item.imdbID === imdbID);
       setNominated([...nominated, movie]);
+      toastToggle();
+      setToastType("success");
+      setToastText("Movie added");
     }
   };
 
@@ -29,17 +36,21 @@ export default function App() {
   };
 
   const removeClick = (imdbID) => {
-    //find index of movie
-    //remove movie from array
-    debugger;
     let index = nominated.findIndex((item) => item.imdbID === imdbID);
     let newArray = [...nominated];
     newArray.splice(index, 1);
     setNominated(newArray);
+    toastToggle();
+    setToastType("error");
+    setToastText("Movie removed");
   };
 
   const dialogToggle = () => {
     setDialogOpen(!dialogOpen);
+  };
+
+  const toastToggle = () => {
+    setToastOpen(!toastOpen);
   };
 
   return (
@@ -87,6 +98,13 @@ export default function App() {
         toggle={dialogToggle}
         title="Thank you for nominating"
         text="You reached the max of 5 movie nominations. To add another movie you will need to remove one"
+      />
+      <Toast
+        open={toastOpen}
+        toggle={toastToggle}
+        type={toastType}
+        duration={2000}
+        text={toastText}
       />
     </div>
   );
