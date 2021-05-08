@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieCard({ src, title, year }) {
+export default function MovieCard({ src, title, year, imdbID, nominateClick }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -36,7 +36,11 @@ export default function MovieCard({ src, title, year }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => nominateClick(imdbID)}
+        >
           Nominate
         </Button>
       </CardActions>
