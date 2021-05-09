@@ -13,8 +13,8 @@ const useStyles = makeStyles({
     padding: "10px 5vw 10px 5vw",
   },
   container: {
-    border: "5px solid white",
-    borderRadius: "10px",
+    border: "10px solid white",
+    borderRadius: "20px",
     backgroundColor: "lightgray",
   },
   media: {
