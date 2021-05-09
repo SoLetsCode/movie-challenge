@@ -14,3 +14,4 @@ Challenge Goals Completed
 - Adding toast notifications when adding and removing movies.
 - Showing images with the movie titles
 - Trying to hide my API keys using environment variables and GITHUB secrets. People can still find it by looking at the network calls. Fully hiding the API key on the front end would require requests be made with a backend server.
+- Responsive design for different screen sizes
