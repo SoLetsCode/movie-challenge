@@ -6,7 +6,7 @@ import SearchBar from "./components/SearchBar";
 import Dialog from "./components/Dialog";
 import Toast from "./components/Toast";
 
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
@@ -15,12 +15,7 @@ const useStyles = makeStyles({
   container: {
     border: "10px solid white",
     borderRadius: "20px",
-    backgroundColor: "lightgray",
-  },
-  media: {
-    height: 140,
-    backgroundSize: "contain",
-    backgroundColor: "black",
+    backgroundColor: "#DCDCDC",
   },
 });
 
@@ -90,7 +85,7 @@ export default function App() {
         The Shoppies
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.container}>
           <SearchBar setMovies={setMovies} setSearch={setSearch} />
         </Grid>
         <Grid item xs={6} lg={8} align="center" className={classes.container}>

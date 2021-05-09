@@ -6,6 +6,9 @@ import { Button, TextField, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  input: {
+    backgroundColor: "white",
+  },
   button: {
     height: "100%",
   },
@@ -59,6 +62,7 @@ function SearchBar({ setMovies, setSearch }) {
             variant="outlined"
             onChange={(e) => setInput(e.target.value)}
             placeholder="Please use at least 3 letters/numbers"
+            className={classes.input}
           />
         </Grid>
         <Grid item xs={2}>
