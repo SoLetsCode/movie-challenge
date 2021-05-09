@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Typography, Grid } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
@@ -8,12 +8,18 @@ import Toast from "./components/Toast";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [nominated, setNominated] = useState([]);
+  const [nominated, setNominated] = useState(
+    JSON.parse(localStorage.getItem("nominatedList")) || []
+  );
   const [search, setSearch] = useState("Please search for movies");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [toastOpen, setToastOpen] = useState(false);
   const [toastText, setToastText] = useState("");
   const [toastType, setToastType] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("nominatedList", JSON.stringify(nominated));
+  }, [nominated]);
 
   const nominateClick = (imdbID) => {
     if (nominated.length >= 4) {
