@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Grid } from "@material-ui/core";
+import { Container, Typography, Grid } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
 import SearchBar from "./components/SearchBar";
 import Dialog from "./components/Dialog";
@@ -57,42 +57,39 @@ export default function App() {
 
   return (
     <div>
-      <Grid container justify="center">
-        <SearchBar setMovies={setMovies} setSearch={setSearch} />
-      </Grid>
-      <Grid container xs={12} item justify="center">
-        <Grid container item xs={6}>
-          <Container>
-            {search}
-            {movies.map((movie) => (
-              <MovieCard
-                title={movie.Title}
-                year={movie.Year}
-                src={movie.Poster}
-                imdbID={movie.imdbID}
-                buttonClick={nominateClick}
-                buttonTitle={"Nominate"}
-                nominated={nominatedCheck(movie.imdbID)}
-                key={movie.imdbID + "search"}
-              />
-            ))}
-          </Container>
+      <Grid container>
+        <Grid item xs={12}>
+          <SearchBar setMovies={setMovies} setSearch={setSearch} />
         </Grid>
-        <Grid container item xs={6}>
-          <Container>
-            {"Nominated"}
-            {nominated.map((movie) => (
-              <MovieCard
-                title={movie.Title}
-                year={movie.Year}
-                src={movie.Poster}
-                imdbID={movie.imdbID}
-                buttonClick={removeClick}
-                buttonTitle={"Remove"}
-                key={movie.imdbID + "nominated"}
-              />
-            ))}
-          </Container>
+        <Grid item xs={6} align="center">
+          <Typography variant="h5">{search}</Typography>
+
+          {movies.map((movie) => (
+            <MovieCard
+              title={movie.Title}
+              year={movie.Year}
+              src={movie.Poster}
+              imdbID={movie.imdbID}
+              buttonClick={nominateClick}
+              buttonTitle={"Nominate"}
+              nominated={nominatedCheck(movie.imdbID)}
+              key={movie.imdbID + "search"}
+            />
+          ))}
+        </Grid>
+        <Grid item xs={6} align="center">
+          <Typography variant="h5">{"Nominated"}</Typography>
+          {nominated.map((movie) => (
+            <MovieCard
+              title={movie.Title}
+              year={movie.Year}
+              src={movie.Poster}
+              imdbID={movie.imdbID}
+              buttonClick={removeClick}
+              buttonTitle={"Remove"}
+              key={movie.imdbID + "nominated"}
+            />
+          ))}
         </Grid>
       </Grid>
       <Dialog
