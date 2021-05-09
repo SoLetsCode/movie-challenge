@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Typography, Grid } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
 import SearchBar from "./components/SearchBar";
 import Dialog from "./components/Dialog";
@@ -103,7 +103,7 @@ export default function App() {
       />
       <Toast
         open={toastOpen}
-        toggle={toastClose}
+        toastClose={toastClose}
         type={toastType}
         duration={2000}
         text={toastText}

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-import { Button, Container, TextField, Grid } from "@material-ui/core";
+import { Button, TextField, Grid } from "@material-ui/core";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  button: {
+    height: "100%",
+  },
+});
 
 function SearchBar({ setMovies, setSearch }) {
+  const [input, setInput] = useState("");
+
   const API_KEY =
     process.env.NODE_ENV === "development"
       ? process.env.REACT_APP_API_KEY
@@ -28,39 +38,45 @@ function SearchBar({ setMovies, setSearch }) {
           setMovies(res.data.Search);
           console.log(res.data.Search);
         }
-
-        e.target.title.value = "";
+        e.target.reset();
+        setInput("");
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const classes = useStyles();
+
   return (
-    <Container>
-      <form
-        noValidate
-        autoComplete="off"
-        id="searchForm"
-        onSubmit={searchSubmit}
-      >
-        <Grid container justify="center">
-          <Grid container item xs={3}>
-            <TextField label="Search" name="title" variant="outlined" />
-          </Grid>
-          <Grid container item xs={3}>
-            <Button
-              type="submit"
-              variant="contained"
-              form="searchForm"
-              color="primary"
-            >
-              Search
-            </Button>
-          </Grid>
+    <form noValidate autoComplete="off" id="searchForm" onSubmit={searchSubmit}>
+      <Grid container>
+        <Grid item xs={10}>
+          <TextField
+            fullWidth
+            label="Search"
+            name="title"
+            variant="outlined"
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Please use at least 3 letters/numbers"
+          />
         </Grid>
-      </form>
-    </Container>
+        <Grid item xs={2}>
+          <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            form="searchForm"
+            color="primary"
+            disabled={input.length < 3}
+            size="large"
+            className={classes.button}
+          >
+            Search
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 }
 
