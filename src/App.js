@@ -66,13 +66,17 @@ export default function App() {
 
   return (
     <div>
-      <Grid container>
+      <Typography variant="h3" align="center" gutterBottom>
+        The Shoppies
+      </Typography>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <SearchBar setMovies={setMovies} setSearch={setSearch} />
         </Grid>
         <Grid item xs={6} align="center">
-          <Typography variant="h5">{search}</Typography>
-
+          <Typography variant="h5" gutterBottom>
+            {search}
+          </Typography>
           {movies.map((movie) => (
             <MovieCard
               title={movie.Title}
@@ -87,7 +91,9 @@ export default function App() {
           ))}
         </Grid>
         <Grid item xs={6} align="center">
-          <Typography variant="h5">{"Nominated"}</Typography>
+          <Typography variant="h5" gutterBottom>
+            {"Nominated"}
+          </Typography>
           {nominated.map((movie) => (
             <MovieCard
               title={movie.Title}
