@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Toast({ open, toggle, type, duration, text }) {
+export default function Toast({ open, toastClose, type, duration, text }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Snackbar open={open} autoHideDuration={duration} onClose={toggle}>
-        <Alert onClose={toggle} severity={type}>
+      <Snackbar open={open} autoHideDuration={duration} onClose={toastClose}>
+        <Alert onClose={toastClose} severity={type}>
           {text}
         </Alert>
       </Snackbar>
